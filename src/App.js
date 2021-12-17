@@ -1,24 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from "react";
+import { Routes, Route } from "react-router-dom";
+import Headers from "./components/Headers";
+import MovieList from "./components/MovieList";
+import FavoritePage from "./components/FavoritePage";
+import CartProvider from "./components/store/CartProvider";
+import MovieDetail from "./components/MovieDetail";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <CartProvider>
+      <Headers />
+
+     
+      <Routes>
+        <Route path="/" element={<main> <h2>Movie & Tv Trailers</h2>
+      <MovieList /></main> }></Route>
+
+        <Route path="/favourite" element={<FavoritePage />}></Route>
+      <Route path="/Movie/:movieId" element={<MovieDetail />}></Route>
+      </Routes>
+    </CartProvider>
   );
 }
 
